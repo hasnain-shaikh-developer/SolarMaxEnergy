@@ -1,6 +1,6 @@
 /* ============================================
    SolarMax Energy Pakistan - Premium Solar Website
-   CSS Stylesheet - Fixed & Optimized
+   CSS Stylesheet - FIXED & OPTIMIZED
    ============================================ */
 
 /* CSS Variables */
@@ -123,13 +123,13 @@ input, textarea, select {
 
 /* Section Base - FIXED: Reduced excessive spacing */
 .section {
-    padding: 3.5rem 0;
+    padding: 2.5rem 0;
 }
 
 .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 2rem;
 }
 
 .section-tag {
@@ -241,7 +241,7 @@ input, textarea, select {
     transform: translateY(-2px);
 }
 
-/* Dark Mode Toggle - FIXED: Repositioned to avoid overlap */
+/* Dark Mode Toggle - FIXED: Better positioning to prevent overlap */
 .dark-mode-toggle {
     position: fixed;
     bottom: 6rem;
@@ -257,6 +257,7 @@ input, textarea, select {
     align-items: center;
     justify-content: center;
     transition: all var(--transition-base);
+    border: 1px solid var(--gray-200);
 }
 
 .dark-mode-toggle:hover {
@@ -316,7 +317,7 @@ input, textarea, select {
     left: 0;
     right: 0;
     z-index: 999;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -324,7 +325,7 @@ input, textarea, select {
 }
 
 [data-theme="dark"] .navbar {
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     border-bottom-color: rgba(255,255,255,0.05);
 }
 
@@ -339,7 +340,7 @@ input, textarea, select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 68px;
+    height: 64px;
 }
 
 .logo {
@@ -350,6 +351,7 @@ input, textarea, select {
     font-size: 1.375rem;
     font-weight: 700;
     color: var(--gray-900);
+    z-index: 1002;
 }
 
 .logo svg {
@@ -393,7 +395,7 @@ input, textarea, select {
     width: 100%;
 }
 
-/* Hamburger - FIXED: Improved visibility */
+/* Hamburger - FIXED: Improved visibility and positioning */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -426,15 +428,32 @@ input, textarea, select {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Hero Section */
+/* Mobile Menu Overlay - NEW */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Hero Section - FIXED: Reduced min-height */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding-top: 68px;
+    padding-top: 64px;
+    padding-bottom: 3rem;
 }
 
 .hero-bg {
@@ -454,7 +473,7 @@ input, textarea, select {
     z-index: 1;
     text-align: center;
     max-width: 850px;
-    padding: 0 var(--container-padding);
+    padding: 3rem var(--container-padding);
     color: var(--white);
 }
 
@@ -499,7 +518,7 @@ input, textarea, select {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .hero-stats {
@@ -568,11 +587,11 @@ input, textarea, select {
     100% { opacity: 0; top: 20px; }
 }
 
-/* About Preview */
+/* About Preview - FIXED: Reduced gaps */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
 }
 
@@ -584,7 +603,7 @@ input, textarea, select {
 
 .about-img-wrapper img {
     width: 100%;
-    height: 450px;
+    height: 400px;
     object-fit: cover;
 }
 
@@ -740,7 +759,7 @@ input, textarea, select {
 .calculator-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -903,7 +922,7 @@ input, textarea, select {
 .projects-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
+    grid-template-rows: 260px 260px;
     gap: 1.25rem;
 }
 
@@ -996,7 +1015,7 @@ input, textarea, select {
 
 .section-cta {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 /* Testimonials */
@@ -1180,7 +1199,7 @@ input, textarea, select {
     font-size: 0.9375rem;
 }
 
-/* CTA Section */
+/* CTA Section - FIXED: Reduced padding */
 .cta-section {
     padding: 0;
 }
@@ -1189,7 +1208,7 @@ input, textarea, select {
     position: relative;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     border-radius: var(--radius-xl);
-    padding: 3rem;
+    padding: 2.5rem;
     overflow: hidden;
     text-align: center;
 }
@@ -1238,7 +1257,7 @@ input, textarea, select {
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .contact-info-cards {
@@ -1349,14 +1368,14 @@ input, textarea, select {
 .footer {
     background: var(--gray-900);
     color: var(--gray-400);
-    padding: 3rem 0 0;
+    padding: 2.5rem 0 0;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 2.5rem;
-    padding-bottom: 2.5rem;
+    gap: 2rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -1735,14 +1754,15 @@ input, textarea, select {
     height: 16px;
 }
 
-/* Page Header */
+/* Page Header - FIXED: Reduced min-height */
 .page-header {
     position: relative;
-    min-height: 45vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 68px;
+    padding-top: 64px;
+    padding-bottom: 2.5rem;
     overflow: hidden;
 }
 
@@ -1763,7 +1783,7 @@ input, textarea, select {
     z-index: 1;
     text-align: center;
     color: var(--white);
-    padding: 0 var(--container-padding);
+    padding: 2.5rem var(--container-padding);
 }
 
 .page-tag {
@@ -1796,7 +1816,7 @@ input, textarea, select {
 .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
 }
 
@@ -1806,7 +1826,7 @@ input, textarea, select {
 
 .story-image img {
     width: 100%;
-    height: 450px;
+    height: 420px;
     object-fit: cover;
     border-radius: var(--radius-xl);
 }
@@ -2097,17 +2117,17 @@ input, textarea, select {
     line-height: 1.5;
 }
 
-/* Services Detail */
+/* Services Detail - FIXED: Reduced gaps */
 .services-detail {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 .service-detail-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -2127,7 +2147,7 @@ input, textarea, select {
 
 .service-detail-image img {
     width: 100%;
-    height: 380px;
+    height: 360px;
     object-fit: cover;
 }
 
@@ -2394,7 +2414,7 @@ input, textarea, select {
 
 .project-full-image {
     position: relative;
-    height: 260px;
+    height: 240px;
     overflow: hidden;
 }
 
@@ -2495,7 +2515,7 @@ input, textarea, select {
 
 /* Contact Page */
 .contact-info-section {
-    padding-top: 2.5rem;
+    padding-top: 2rem;
 }
 
 .contact-info-grid {
@@ -2561,7 +2581,7 @@ input, textarea, select {
 .contact-main-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: start;
 }
 
@@ -2675,7 +2695,7 @@ input, textarea, select {
 
 .map-placeholder {
     position: relative;
-    height: 480px;
+    height: 460px;
     background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
     border-radius: var(--radius-xl);
     overflow: hidden;
@@ -2849,10 +2869,10 @@ input, textarea, select {
     }
     
     .section {
-        padding: 2.5rem 0;
+        padding: 2rem 0;
     }
     
-    /* FIXED: Hamburger menu visibility */
+    /* FIXED: Hamburger menu visibility with smooth animation */
     .hamburger {
         display: flex !important;
     }
@@ -2861,14 +2881,16 @@ input, textarea, select {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 300px;
+        width: 75%;
+        max-width: 320px;
         height: 100vh;
         background: var(--white);
         flex-direction: column;
-        padding: 5rem 1.5rem 1.5rem;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 5rem 2rem 2rem;
         gap: 0;
-        transition: right 0.3s ease;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: var(--shadow-2xl);
         z-index: 1001;
     }
@@ -2882,10 +2904,30 @@ input, textarea, select {
     }
     
     .nav-link {
-        padding: 0.875rem 0;
+        padding: 1rem 0;
         border-bottom: 1px solid var(--gray-200);
-        font-size: 1.0625rem;
+        font-size: 1.125rem;
         width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary);
+        background: rgba(245, 158, 11, 0.05);
+        border-radius: var(--radius-md);
+    }
+    
+    .hero {
+        padding-bottom: 2rem;
+    }
+    
+    .hero-content {
+        padding: 2rem var(--container-padding);
     }
     
     .hero-stats {
@@ -2895,6 +2937,7 @@ input, textarea, select {
     
     .projects-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
     }
     
     .testimonial-card {
@@ -2981,6 +3024,14 @@ input, textarea, select {
         width: 24px;
         height: 24px;
     }
+    
+    .page-header {
+        padding-bottom: 2rem;
+    }
+    
+    .page-header-content {
+        padding: 2rem var(--container-padding);
+    }
 }
 
 @media (max-width: 480px) {
@@ -3022,6 +3073,10 @@ input, textarea, select {
     
     .section-title {
         font-size: 1.5rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
