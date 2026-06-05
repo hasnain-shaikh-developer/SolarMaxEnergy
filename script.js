@@ -1,6 +1,6 @@
 /* ============================================
    SolarMax Energy Pakistan - Premium Solar Website
-   JavaScript - Fixed & Optimized
+   JavaScript - FIXED & OPTIMIZED
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -71,31 +71,61 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScroll();
 
     // ============================================
-    // Hamburger Menu - FIXED
+    // Hamburger Menu - FIXED: Smooth animation + overlay
     // ============================================
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    
+    function openMobileMenu() {
+        if (hamburger) hamburger.classList.add('active');
+        if (navMenu) navMenu.classList.add('active');
+        if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+        if (hamburger) hamburger.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function(e) {
             e.stopPropagation();
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         });
         
         // Close menu when clicking a link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                closeMobileMenu();
             });
         });
         
+        // Close menu when clicking overlay
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+        
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+            if (navMenu.classList.contains('active') && 
+                !hamburger.contains(e.target) && 
+                !navMenu.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMobileMenu();
             }
         });
     }
@@ -183,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const pkWhRate = 35;
             
             // Calculate system size (kW)
-            // Formula: (monthly bill / rate) / (sun hours * 30) * property multiplier
             const monthlyUnits = monthlyBill / pkWhRate;
             const systemSize = ((monthlyUnits) / (sunMultiplier * 30) * propMultiplier * 1.3).toFixed(1);
             
@@ -192,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const annualSavings = (monthlySavings * 12).toFixed(0);
             
             // Calculate payback period
-            // Average cost per kW in Pakistan: ₨120,000 residential, ₨100,000 commercial, ₨85,000 industrial
             const costPerKw = {
                 residential: 120000,
                 commercial: 100000,
