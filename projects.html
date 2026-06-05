@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects | SolarMax Energy Pakistan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle Dark Mode">
+        <i data-lucide="moon" class="dark-icon"></i>
+        <i data-lucide="sun" class="light-icon"></i>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923001234567" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i data-lucide="sun"></i>
+                <span>SolarMax</span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-bg">
+            <div class="page-header-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-header-content" data-aos="fade-up">
+                <span class="page-tag">Portfolio</span>
+                <h1>Our Projects</h1>
+                <p>Showcasing our expertise through successful solar installations across Pakistan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Stats -->
+    <section class="section projects-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+                    <i data-lucide="zap"></i>
+                    <span class="stat-number" data-count="2500">0</span>
+                    <span class="stat-label">Total Installations</span>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="sun"></i>
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-suffix">MW</span>
+                    <span class="stat-label">Total Capacity</span>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="map-pin"></i>
+                    <span class="stat-number" data-count="45">0</span>
+                    <span class="stat-suffix">+</span>
+                    <span class="stat-label">Cities Served</span>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <i data-lucide="trending-down"></i>
+                    <span class="stat-number" data-count="75000">0</span>
+                    <span class="stat-suffix">Tons</span>
+                    <span class="stat-label">CO2 Offset</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Gallery -->
+    <section class="section projects-gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Featured Work</span>
+                <h2 class="section-title">Recent Installations</h2>
+                <p class="section-desc">Browse through our portfolio of completed solar projects across Pakistan.</p>
+            </div>
+            <div class="projects-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+            </div>
+            <div class="projects-full-grid" id="projectsGrid">
+                <!-- Project 1 -->
+                <div class="project-full-card" data-category="commercial" data-aos="fade-up">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1545208942-e0c52ed1769d?w=800&h=400&fit=crop&q=80" alt="Apex Business Center Karachi">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Commercial</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>Apex Business Center</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Karachi, Sindh</span>
+                            <span><i data-lucide="zap"></i> 500 kW System</span>
+                        </div>
+                        <p>A comprehensive rooftop solar installation for a 12-story commercial building in Clifton, featuring 1,200 premium panels and smart monitoring.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨1,350,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">650 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">3.5 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-full-card" data-category="residential" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=800&h=400&fit=crop&q=80" alt="Green Valley Estate Lahore">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Residential</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>Green Valley Estate</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Lahore, Punjab</span>
+                            <span><i data-lucide="zap"></i> 12 kW System</span>
+                        </div>
+                        <p>Luxury residential installation in DHA Lahore with integrated battery backup, providing complete energy independence during load shedding.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨72,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">18 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">4.2 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-full-card" data-category="industrial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&h=400&fit=crop&q=80" alt="Metro Manufacturing Faisalabad">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Industrial</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>Metro Manufacturing Plant</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Faisalabad, Punjab</span>
+                            <span><i data-lucide="zap"></i> 2 MW System</span>
+                        </div>
+                        <p>Large-scale ground-mount installation for a textile manufacturing facility, including energy storage and demand charge management.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨5,400,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">2,400 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">3.2 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-full-card" data-category="residential" data-aos="fade-up">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=400&fit=crop&q=80" alt="Sunset Ridge Homes Islamabad">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Residential</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>Sunset Ridge Community</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Islamabad</span>
+                            <span><i data-lucide="zap"></i> 8 kW System</span>
+                        </div>
+                        <p>Community-wide residential solar program serving 150 homes in Bahria Town with standardized installations and group purchasing benefits.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨48,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">12 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">4.8 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-full-card" data-category="commercial" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=400&fit=crop&q=80" alt="TechHub Campus Lahore">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Commercial</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>TechHub Innovation Campus</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Lahore, Punjab</span>
+                            <span><i data-lucide="zap"></i> 750 kW System</span>
+                        </div>
+                        <p>Carport solar installation covering 300 parking spaces at Arfa Software Technology Park, providing shade and clean energy.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨1,860,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">890 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">3.8 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-full-card" data-category="industrial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-full-image">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=400&fit=crop&q=80" alt="AgriSolar Cooperative Multan">
+                        <div class="project-full-overlay">
+                            <span class="project-category">Industrial</span>
+                        </div>
+                    </div>
+                    <div class="project-full-info">
+                        <h3>AgriSolar Cooperative</h3>
+                        <div class="project-full-meta">
+                            <span><i data-lucide="map-pin"></i> Multan, Punjab</span>
+                            <span><i data-lucide="zap"></i> 5 MW System</span>
+                        </div>
+                        <p>Innovative agrivoltaics project combining solar generation with mango orchard cultivation, maximizing land use efficiency in South Punjab.</p>
+                        <div class="project-full-savings">
+                            <div class="savings-item">
+                                <span class="savings-label">Annual Savings</span>
+                                <span class="savings-value">₨12,600,000</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">CO2 Offset</span>
+                                <span class="savings-value">5,600 Tons/yr</span>
+                            </div>
+                            <div class="savings-item">
+                                <span class="savings-label">Payback</span>
+                                <span class="savings-value">4.1 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-wrapper" data-aos="zoom-in">
+                <div class="cta-content">
+                    <h2>Ready to Join Our Success Stories?</h2>
+                    <p>Every project starts with a conversation. Let's discuss how solar can transform your property in Pakistan.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-white">
+                            <span>Start Your Project</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <i data-lucide="sun"></i>
+                        <span>SolarMax</span>
+                    </a>
+                    <p>Leading the transition to clean, renewable energy with premium solar solutions for homes and businesses across Pakistan.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Residential Solar</a></li>
+                        <li><a href="services.html">Commercial Solar</a></li>
+                        <li><a href="services.html">Industrial Solar</a></li>
+                        <li><a href="services.html">Battery Backup</a></li>
+                        <li><a href="services.html">Solar Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i data-lucide="map-pin"></i> Plot 123, Sector F-7, Islamabad, Pakistan</li>
+                        <li><i data-lucide="phone"></i> +92 300 1234567</li>
+                        <li><i data-lucide="mail"></i> info@solarmax.pk</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SolarMax Energy Pakistan. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Solar Assistant Chatbot -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Chat">
+            <i data-lucide="message-circle"></i>
+            <span class="chatbot-notification">1</span>
+        </button>
+        <div class="chatbot-panel" id="chatbotPanel">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <i data-lucide="bot"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h4>Solar Assistant</h4>
+                    <span class="chatbot-status">
+                        <span class="status-dot"></span> Online
+                    </span>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Close Chat">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        <p>Assalamu Alaikum! I'm your Solar Assistant. How can I help you today? Ask me about solar panels, savings, installation, or anything solar-related in Pakistan!</p>
+                    </div>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+            <div class="chatbot-suggestions" id="chatbotSuggestions">
+                <button class="suggestion-chip">Solar costs?</button>
+                <button class="suggestion-chip">How does it work?</button>
+                <button class="suggestion-chip">Get a quote</button>
+                <button class="suggestion-chip">Net metering</button>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                <button id="chatbotSend" aria-label="Send Message">
+                    <i data-lucide="send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
