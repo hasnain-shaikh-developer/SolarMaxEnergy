@@ -1,6 +1,6 @@
 /* ============================================
    SolarMax Energy Pakistan - Premium Solar Website
-   CSS Stylesheet - FIXED & OPTIMIZED
+   Complete CSS Stylesheet - FIXED
    ============================================ */
 
 /* CSS Variables */
@@ -75,6 +75,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -83,6 +84,8 @@ body {
     background-color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
     transition: background-color var(--transition-base), color var(--transition-base);
 }
 
@@ -119,17 +122,20 @@ input, textarea, select {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+    width: 100%;
 }
 
-/* Section Base - FIXED: Reduced excessive spacing */
+/* Section Base */
 .section {
     padding: 2.5rem 0;
+    width: 100%;
 }
 
 .section-header {
     text-align: center;
     max-width: 700px;
     margin: 0 auto 2rem;
+    padding: 0 1rem;
 }
 
 .section-tag {
@@ -241,7 +247,7 @@ input, textarea, select {
     transform: translateY(-2px);
 }
 
-/* Dark Mode Toggle - FIXED: Better positioning to prevent overlap */
+/* Dark Mode Toggle */
 .dark-mode-toggle {
     position: fixed;
     bottom: 6rem;
@@ -310,7 +316,10 @@ input, textarea, select {
     50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6); }
 }
 
-/* Navigation */
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -322,6 +331,8 @@ input, textarea, select {
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     transition: all var(--transition-base);
+    width: 100%;
+    max-width: 100vw;
 }
 
 [data-theme="dark"] .navbar {
@@ -341,6 +352,8 @@ input, textarea, select {
     align-items: center;
     justify-content: space-between;
     height: 64px;
+    width: 100%;
+    position: relative;
 }
 
 .logo {
@@ -352,6 +365,8 @@ input, textarea, select {
     font-weight: 700;
     color: var(--gray-900);
     z-index: 1002;
+    position: relative;
+    flex-shrink: 0;
 }
 
 .logo svg {
@@ -360,10 +375,14 @@ input, textarea, select {
     color: var(--primary);
 }
 
+/* Desktop Navigation */
 .nav-menu {
     display: flex;
     align-items: center;
     gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
@@ -395,16 +414,23 @@ input, textarea, select {
     width: 100%;
 }
 
-/* Hamburger - FIXED: Improved visibility and positioning */
+/* Hamburger Button */
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
-    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     z-index: 1002;
     background: transparent;
     border: none;
     cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .hamburger span {
@@ -412,31 +438,35 @@ input, textarea, select {
     width: 24px;
     height: 2.5px;
     background: var(--gray-800);
-    transition: all var(--transition-base);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
+    transform-origin: center;
 }
 
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(7.5px) rotate(45deg);
 }
 
 .hamburger.active span:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-7.5px) rotate(-45deg);
 }
 
-/* Mobile Menu Overlay - NEW */
+/* Mobile Menu Overlay */
 .mobile-menu-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 998;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
 }
 
 .mobile-menu-overlay.active {
@@ -444,9 +474,116 @@ input, textarea, select {
     opacity: 1;
 }
 
-/* Hero Section - FIXED: Reduced min-height */
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 5rem 2rem 2rem;
+        gap: 0;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+        z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    [data-theme="dark"] .nav-menu {
+        background: var(--gray-900);
+    }
+    
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        list-style: none;
+    }
+    
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 1.125rem 1rem;
+        border-bottom: 1px solid var(--gray-200);
+        font-size: 1.125rem;
+        font-weight: 500;
+        text-align: center;
+        color: var(--gray-800);
+        transition: all 0.2s ease;
+    }
+    
+    [data-theme="dark"] .nav-link {
+        color: var(--gray-100);
+        border-bottom-color: var(--gray-700);
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary);
+        background: rgba(245, 158, 11, 0.08);
+        border-radius: var(--radius-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        padding: 4.5rem 1.5rem 1.5rem;
+    }
+    
+    .nav-link {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .dark-mode-toggle {
+        bottom: 5rem;
+        left: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .whatsapp-float svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ============================================
+   HERO SECTION - FIXED OVERFLOW
+   ============================================ */
+
 .hero {
     position: relative;
+    width: 100%;
+    max-width: 100vw;
     min-height: auto;
     display: flex;
     align-items: center;
@@ -459,12 +596,25 @@ input, textarea, select {
 .hero-bg {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.65) 100%);
 }
 
@@ -473,8 +623,10 @@ input, textarea, select {
     z-index: 1;
     text-align: center;
     max-width: 850px;
+    width: 100%;
     padding: 3rem var(--container-padding);
     color: var(--white);
+    margin: 0 auto;
 }
 
 .hero-badge {
@@ -503,6 +655,7 @@ input, textarea, select {
     line-height: 1.1;
     margin-bottom: 1.25rem;
     color: var(--white);
+    word-wrap: break-word;
 }
 
 .hero-subtitle {
@@ -511,6 +664,7 @@ input, textarea, select {
     max-width: 580px;
     margin: 0 auto 1.75rem;
     line-height: 1.7;
+    word-wrap: break-word;
 }
 
 .hero-buttons {
@@ -527,6 +681,7 @@ input, textarea, select {
     gap: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
 }
 
 .stat-item {
@@ -560,6 +715,7 @@ input, textarea, select {
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
 }
 
 .scroll-mouse {
@@ -587,18 +743,20 @@ input, textarea, select {
     100% { opacity: 0; top: 20px; }
 }
 
-/* About Preview - FIXED: Reduced gaps */
+/* About Preview */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
     align-items: center;
+    width: 100%;
 }
 
 .about-img-wrapper {
     position: relative;
     border-radius: var(--radius-xl);
     overflow: hidden;
+    width: 100%;
 }
 
 .about-img-wrapper img {
@@ -674,6 +832,7 @@ input, textarea, select {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .service-card {
@@ -744,6 +903,7 @@ input, textarea, select {
 .calculator-section {
     background: linear-gradient(135deg, var(--gray-900) 0%, #1e293b 100%);
     color: var(--white);
+    width: 100%;
 }
 
 .calculator-header .section-tag {
@@ -762,6 +922,7 @@ input, textarea, select {
     gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .calculator-form {
@@ -769,6 +930,7 @@ input, textarea, select {
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-xl);
     padding: 1.75rem;
+    width: 100%;
 }
 
 .form-group {
@@ -837,6 +999,7 @@ input, textarea, select {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 
 .results-placeholder {
@@ -864,6 +1027,7 @@ input, textarea, select {
     grid-template-columns: 1fr 1fr;
     gap: 0.875rem;
     margin-bottom: 1.25rem;
+    width: 100%;
 }
 
 .result-card {
@@ -924,6 +1088,7 @@ input, textarea, select {
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 260px 260px;
     gap: 1.25rem;
+    width: 100%;
 }
 
 .project-card {
@@ -941,6 +1106,7 @@ input, textarea, select {
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .project-image img {
@@ -958,6 +1124,7 @@ input, textarea, select {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    z-index: 2;
 }
 
 .project-tag {
@@ -980,6 +1147,7 @@ input, textarea, select {
     padding: 1.25rem;
     background: linear-gradient(transparent, rgba(0,0,0,0.8));
     color: var(--white);
+    z-index: 2;
 }
 
 .project-info h3 {
@@ -1021,17 +1189,20 @@ input, textarea, select {
 /* Testimonials */
 .testimonials {
     background: var(--gray-50);
+    width: 100%;
 }
 
 .testimonials-slider {
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .testimonials-track {
     display: flex;
     gap: 1.25rem;
     transition: transform var(--transition-slow);
+    width: 100%;
 }
 
 .testimonial-card {
@@ -1144,6 +1315,7 @@ input, textarea, select {
 .faq-grid {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .faq-item {
@@ -1199,9 +1371,10 @@ input, textarea, select {
     font-size: 0.9375rem;
 }
 
-/* CTA Section - FIXED: Reduced padding */
+/* CTA Section */
 .cta-section {
     padding: 0;
+    width: 100%;
 }
 
 .cta-wrapper {
@@ -1211,6 +1384,7 @@ input, textarea, select {
     padding: 2.5rem;
     overflow: hidden;
     text-align: center;
+    width: 100%;
 }
 
 .cta-content {
@@ -1258,12 +1432,14 @@ input, textarea, select {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    width: 100%;
 }
 
 .contact-info-cards {
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
+    width: 100%;
 }
 
 .contact-info-card {
@@ -1324,6 +1500,7 @@ input, textarea, select {
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-xl);
     padding: 1.75rem;
+    width: 100%;
 }
 
 .contact-form-preview .form-group label {
@@ -1362,6 +1539,7 @@ input, textarea, select {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.875rem;
+    width: 100%;
 }
 
 /* Footer */
@@ -1369,6 +1547,7 @@ input, textarea, select {
     background: var(--gray-900);
     color: var(--gray-400);
     padding: 2.5rem 0 0;
+    width: 100%;
 }
 
 .footer-grid {
@@ -1377,6 +1556,7 @@ input, textarea, select {
     gap: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
 }
 
 .footer-logo {
@@ -1754,7 +1934,7 @@ input, textarea, select {
     height: 16px;
 }
 
-/* Page Header - FIXED: Reduced min-height */
+/* Page Header */
 .page-header {
     position: relative;
     min-height: auto;
@@ -1764,17 +1944,32 @@ input, textarea, select {
     padding-top: 64px;
     padding-bottom: 2.5rem;
     overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 .page-header-bg {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page-header-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+    width: 100%;
+    height: 100%;
 }
 
 .page-header-overlay {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%);
 }
 
@@ -1784,6 +1979,8 @@ input, textarea, select {
     text-align: center;
     color: var(--white);
     padding: 2.5rem var(--container-padding);
+    width: 100%;
+    margin: 0 auto;
 }
 
 .page-tag {
@@ -1812,12 +2009,13 @@ input, textarea, select {
     margin: 0 auto;
 }
 
-/* About Page - Company Story */
+/* About Page */
 .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
     align-items: center;
+    width: 100%;
 }
 
 .story-image {
@@ -1891,12 +2089,14 @@ input, textarea, select {
 /* Mission & Vision */
 .mission-vision {
     background: var(--gray-50);
+    width: 100%;
 }
 
 .mv-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .mv-card {
@@ -1964,11 +2164,12 @@ input, textarea, select {
     flex-shrink: 0;
 }
 
-/* Core Values */
+/* Core Values / Why Choose Us */
 .values-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .value-card {
@@ -2021,6 +2222,7 @@ input, textarea, select {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .team-card {
@@ -2117,11 +2319,12 @@ input, textarea, select {
     line-height: 1.5;
 }
 
-/* Services Detail - FIXED: Reduced gaps */
+/* Services Detail */
 .services-detail {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    width: 100%;
 }
 
 .service-detail-item {
@@ -2129,6 +2332,7 @@ input, textarea, select {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     align-items: center;
+    width: 100%;
 }
 
 .service-detail-item.reverse {
@@ -2143,6 +2347,7 @@ input, textarea, select {
     position: relative;
     border-radius: var(--radius-xl);
     overflow: hidden;
+    width: 100%;
 }
 
 .service-detail-image img {
@@ -2246,12 +2451,14 @@ input, textarea, select {
 /* Process */
 .process {
     background: var(--gray-50);
+    width: 100%;
 }
 
 .process-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .process-step {
@@ -2320,12 +2527,14 @@ input, textarea, select {
 /* Projects Stats */
 .projects-stats {
     background: linear-gradient(135deg, var(--gray-900) 0%, #1e293b 100%);
+    width: 100%;
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .stat-card {
@@ -2397,6 +2606,7 @@ input, textarea, select {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    width: 100%;
 }
 
 .project-full-card {
@@ -2516,12 +2726,14 @@ input, textarea, select {
 /* Contact Page */
 .contact-info-section {
     padding-top: 2rem;
+    width: 100%;
 }
 
 .contact-info-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
+    width: 100%;
 }
 
 .contact-info-large {
@@ -2583,6 +2795,7 @@ input, textarea, select {
     grid-template-columns: 1.2fr 1fr;
     gap: 2rem;
     align-items: start;
+    width: 100%;
 }
 
 .contact-form-wrapper {
@@ -2590,6 +2803,7 @@ input, textarea, select {
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-xl);
     padding: 2rem;
+    width: 100%;
 }
 
 .form-header {
@@ -2691,6 +2905,7 @@ input, textarea, select {
 .contact-map-wrapper {
     position: sticky;
     top: 90px;
+    width: 100%;
 }
 
 .map-placeholder {
@@ -2702,6 +2917,7 @@ input, textarea, select {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .map-content {
@@ -2763,6 +2979,7 @@ input, textarea, select {
 /* WhatsApp CTA */
 .whatsapp-cta {
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    width: 100%;
 }
 
 .whatsapp-wrapper {
@@ -2803,7 +3020,7 @@ input, textarea, select {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - FIXED & OPTIMIZED
+   RESPONSIVE DESIGN
    ============================================ */
 
 @media (max-width: 1024px) {
@@ -2872,67 +3089,13 @@ input, textarea, select {
         padding: 2rem 0;
     }
     
-    /* FIXED: Hamburger menu visibility with smooth animation */
-    .hamburger {
-        display: flex !important;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        max-width: 320px;
-        height: 100vh;
-        background: var(--white);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 5rem 2rem 2rem;
-        gap: 0;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: var(--shadow-2xl);
-        z-index: 1001;
-    }
-    
-    [data-theme="dark"] .nav-menu {
-        background: var(--gray-900);
-    }
-    
-    .nav-menu.active {
-        right: 0;
-    }
-    
-    .nav-link {
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--gray-200);
-        font-size: 1.125rem;
-        width: 100%;
-        text-align: center;
-    }
-    
-    .nav-link::after {
-        display: none;
-    }
-    
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--primary);
-        background: rgba(245, 158, 11, 0.05);
-        border-radius: var(--radius-md);
-    }
-    
-    .hero {
-        padding-bottom: 2rem;
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
     
     .hero-content {
         padding: 2rem var(--container-padding);
-    }
-    
-    .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
     }
     
     .projects-grid {
@@ -3007,24 +3170,6 @@ input, textarea, select {
         padding: 2rem 1.25rem;
     }
     
-    /* FIXED: Dark mode toggle repositioned for mobile */
-    .dark-mode-toggle {
-        bottom: 5rem;
-        left: 1rem;
-        width: 40px;
-        height: 40px;
-    }
-    
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .whatsapp-float svg {
-        width: 24px;
-        height: 24px;
-    }
-    
     .page-header {
         padding-bottom: 2rem;
     }
@@ -3073,10 +3218,6 @@ input, textarea, select {
     
     .section-title {
         font-size: 1.5rem;
-    }
-    
-    .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
