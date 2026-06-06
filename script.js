@@ -1,6 +1,6 @@
 /* ============================================
    SolarMax Energy Pakistan - Premium Solar Website
-   JavaScript - FIXED & OPTIMIZED
+   Complete JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // Dark Mode Toggle
+    // DARK MODE TOGGLE
     // ============================================
     const darkModeToggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // Sticky Navigation
+    // STICKY NAVIGATION
     // ============================================
     const navbar = document.getElementById('navbar');
     
@@ -71,67 +71,127 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScroll();
 
     // ============================================
-    // Hamburger Menu - FIXED: Smooth animation + overlay
+    // MOBILE MENU - COMPLETE FIX
     // ============================================
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     
+    let isMenuOpen = false;
+    
     function openMobileMenu() {
-        if (hamburger) hamburger.classList.add('active');
-        if (navMenu) navMenu.classList.add('active');
-        if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
+        isMenuOpen = true;
         document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+        
+        if (hamburger) hamburger.classList.add('active');
+        
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.style.display = 'block';
+            void mobileMenuOverlay.offsetHeight;
+            mobileMenuOverlay.classList.add('active');
+        }
+        
+        if (navMenu) {
+            navMenu.classList.add('active');
+        }
+        
+        if (navbar) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.backdropFilter = 'blur(20px)';
+        }
+        
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
     
     function closeMobileMenu() {
-        if (hamburger) hamburger.classList.remove('active');
-        if (navMenu) navMenu.classList.remove('active');
-        if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+        isMenuOpen = false;
         document.body.style.overflow = '';
-    }
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (navMenu.classList.contains('active')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
+        document.body.style.touchAction = '';
         
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                closeMobileMenu();
-            });
-        });
+        if (hamburger) hamburger.classList.remove('active');
         
-        // Close menu when clicking overlay
-        if (mobileMenuOverlay) {
-            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        if (navMenu) {
+            navMenu.classList.remove('active');
         }
         
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (navMenu.classList.contains('active') && 
-                !hamburger.contains(e.target) && 
-                !navMenu.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.classList.remove('active');
+            setTimeout(() => {
+                if (!isMenuOpen) {
+                    mobileMenuOverlay.style.display = 'none';
+                }
+            }, 350);
+        }
         
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
+        if (navbar) {
+            navbar.style.background = '';
+            navbar.style.backdropFilter = '';
+        }
+    }
+    
+    function toggleMobileMenu() {
+        if (isMenuOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
         });
     }
+    
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeMobileMenu();
+        });
+    }
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            if (isMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (isMenuOpen && 
+            !hamburger.contains(e.target) && 
+            !navMenu.contains(e.target) &&
+            !mobileMenuOverlay.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    window.addEventListener('orientationchange', function() {
+        if (isMenuOpen && navMenu) {
+            navMenu.style.height = window.innerHeight + 'px';
+        }
+    });
 
     // ============================================
-    // Counter Animation
+    // COUNTER ANIMATION
     // ============================================
     function animateCounters() {
         const counters = document.querySelectorAll('[data-count]');
@@ -172,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     animateCounters();
 
     // ============================================
-    // Solar Savings Calculator - PKR Version
+    // SOLAR SAVINGS CALCULATOR - PKR
     // ============================================
     const calculateBtn = document.getElementById('calculateBtn');
     
@@ -187,50 +247,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Pakistani city sun hours (annual average peak sun hours)
             const sunHours = {
-                karachi: 5.8,
-                lahore: 5.5,
-                islamabad: 5.6,
-                faisalabad: 5.4,
-                peshawar: 5.7,
-                quetta: 6.2,
-                multan: 5.9,
-                rawalpindi: 5.6
+                karachi: 5.8, lahore: 5.5, islamabad: 5.6,
+                faisalabad: 5.4, peshawar: 5.7, quetta: 6.2,
+                multan: 5.9, rawalpindi: 5.6
             };
             
-            // Property type multipliers
             const propertyMultipliers = {
-                residential: 1.0,
-                commercial: 1.15,
-                industrial: 1.3
+                residential: 1.0, commercial: 1.15, industrial: 1.3
             };
             
             const sunMultiplier = sunHours[city] || 5.5;
             const propMultiplier = propertyMultipliers[propertyType] || 1.0;
-            
-            // PKR per kWh average rate in Pakistan (approximate)
             const pkWhRate = 35;
             
-            // Calculate system size (kW)
             const monthlyUnits = monthlyBill / pkWhRate;
             const systemSize = ((monthlyUnits) / (sunMultiplier * 30) * propMultiplier * 1.3).toFixed(1);
             
-            // Calculate savings (85% of bill typically saved)
             const monthlySavings = (monthlyBill * 0.85).toFixed(0);
             const annualSavings = (monthlySavings * 12).toFixed(0);
             
-            // Calculate payback period
             const costPerKw = {
-                residential: 120000,
-                commercial: 100000,
-                industrial: 85000
+                residential: 120000, commercial: 100000, industrial: 85000
             };
             
             const totalCost = systemSize * (costPerKw[propertyType] || 120000);
             const paybackPeriod = (totalCost / annualSavings).toFixed(1);
             
-            // Display results with PKR formatting
             document.getElementById('systemSize').textContent = systemSize;
             document.getElementById('monthlySavings').textContent = '₨' + parseInt(monthlySavings).toLocaleString('en-PK');
             document.getElementById('annualSavings').textContent = '₨' + parseInt(annualSavings).toLocaleString('en-PK');
@@ -242,21 +285,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (placeholder) placeholder.style.display = 'none';
             if (resultsContent) resultsContent.style.display = 'block';
             
-            // Animate results with GSAP
             if (typeof gsap !== 'undefined') {
                 gsap.from('.result-card', {
-                    y: 25,
-                    opacity: 0,
-                    duration: 0.5,
-                    stagger: 0.1,
-                    ease: 'power2.out'
+                    y: 25, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out'
                 });
             }
         });
     }
 
     // ============================================
-    // Testimonials Slider - FIXED
+    // TESTIMONIALS SLIDER
     // ============================================
     const testimonialsTrack = document.getElementById('testimonialsTrack');
     const testimonialPrev = document.getElementById('testimonialPrev');
@@ -268,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         const totalCards = cards.length;
         
-        // Create dots
         if (testimonialsDots) {
             testimonialsDots.innerHTML = '';
             for (let i = 0; i < totalCards; i++) {
@@ -322,7 +359,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         window.addEventListener('resize', updateSlider);
         
-        // Auto-slide
         let autoSlide = setInterval(() => {
             currentIndex++;
             const maxIndex = totalCards - getCardsPerView();
@@ -330,7 +366,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSlider();
         }, 5000);
         
-        // Pause on hover
         testimonialsTrack.addEventListener('mouseenter', () => clearInterval(autoSlide));
         testimonialsTrack.addEventListener('mouseleave', () => {
             autoSlide = setInterval(() => {
@@ -343,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // FAQ Accordion
+    // FAQ ACCORDION
     // ============================================
     const faqItems = document.querySelectorAll('.faq-item');
     
@@ -353,11 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (question) {
             question.addEventListener('click', function() {
                 const isActive = item.classList.contains('active');
-                
-                // Close all items
                 faqItems.forEach(i => i.classList.remove('active'));
-                
-                // Open clicked item if it wasn't active
                 if (!isActive) {
                     item.classList.add('active');
                 }
@@ -366,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // Projects Filter
+    // PROJECTS FILTER
     // ============================================
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-full-card');
@@ -375,11 +406,9 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
             
-            // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
-            // Filter cards
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
                 
@@ -394,9 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     if (typeof gsap !== 'undefined') {
                         gsap.to(card, {
-                            opacity: 0,
-                            scale: 0.95,
-                            duration: 0.3,
+                            opacity: 0, scale: 0.95, duration: 0.3,
                             onComplete: () => { card.style.display = 'none'; }
                         });
                     } else {
@@ -408,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // Chatbot Widget
+    // CHATBOT WIDGET
     // ============================================
     const chatbotToggle = document.getElementById('chatbotToggle');
     const chatbotPanel = document.getElementById('chatbotPanel');
@@ -418,26 +445,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotMessages = document.getElementById('chatbotMessages');
     const chatbotSuggestions = document.getElementById('chatbotSuggestions');
     
-    // Pakistan-specific responses
     const botResponses = {
-        'cost': "Solar system costs in Pakistan vary based on size. Residential systems typically range from ₨450,000 to ₨1,800,000. With net metering, your payback period can be as short as 3-5 years. Would you like a personalized quote?",
-        'price': "Solar system costs in Pakistan vary based on size. Residential systems typically range from ₨450,000 to ₨1,800,000. With net metering, your payback period can be as short as 3-5 years. Would you like a personalized quote?",
-        'how': "Solar panels convert sunlight into electricity through photovoltaic cells. The DC power is converted to AC by a hybrid inverter, then used in your home or sent to the grid via net metering. It's clean, renewable, and perfect for Pakistan's sunny climate!",
-        'work': "Solar panels convert sunlight into electricity through photovoltaic cells. The DC power is converted to AC by a hybrid inverter, then used in your home or sent to the grid via net metering. It's clean, renewable, and perfect for Pakistan's sunny climate!",
-        'quote': "I'd be happy to help you get a quote! Please visit our Contact page or fill out the form on our homepage. Our team will provide a free, no-obligation assessment within 24 hours for your location in Pakistan.",
-        'maintenance': "Solar panels require minimal maintenance in Pakistan! We recommend quarterly cleaning due to dust, plus annual inspections. Our maintenance packages start at ₨15,000/year and include monitoring, cleaning, and priority repair service.",
-        'battery': "Battery backup systems store excess solar energy for use during load shedding. We offer lithium-ion and tubular battery options. Prices start at ₨280,000. Essential for Pakistan's power situation!",
-        'savings': "Most Pakistani homeowners save 50-90% on their electricity bills with solar. Use our Solar Calculator on the homepage to estimate your specific savings based on your monthly bill and city!",
-        'install': "Most residential installations in Pakistan take 1-3 days, but the full process from consultation to net metering is typically 4-8 weeks. This includes NEPRA approvals and DISCO interconnection.",
-        'installation': "Most residential installations in Pakistan take 1-3 days, but the full process from consultation to net metering is typically 4-8 weeks. This includes NEPRA approvals and DISCO interconnection.",
-        'warranty': "We offer a comprehensive 25-year performance warranty on all solar panels, plus workmanship warranties on installation. Your investment is fully protected!",
-        'financing': "We offer multiple financing options in Pakistan including bank solar loans and easy installment plans. Many homeowners qualify for affordable monthly payments less than their current electricity bills.",
-        'net metering': "Net metering in Pakistan allows you to sell excess solar energy back to the grid through your DISCO. NEPRA has made net metering mandatory for all DISCOs. We handle the entire application process for you!",
-        'load shedding': "With our hybrid solar systems and battery backup, you can eliminate load shedding from your life! The battery stores energy during the day to power your home at night or during outages.",
+        'cost': "Solar system costs in Pakistan vary based on size. Residential systems typically range from ₨450,000 to ₨1,800,000. With net metering, your payback period can be as short as 3-5 years.",
+        'price': "Solar system costs in Pakistan vary based on size. Residential systems typically range from ₨450,000 to ₨1,800,000. With net metering, your payback period can be as short as 3-5 years.",
+        'how': "Solar panels convert sunlight into electricity through photovoltaic cells. The DC power is converted to AC by a hybrid inverter, then used in your home or sent to the grid via net metering.",
+        'work': "Solar panels convert sunlight into electricity through photovoltaic cells. The DC power is converted to AC by a hybrid inverter, then used in your home or sent to the grid via net metering.",
+        'quote': "I'd be happy to help you get a quote! Please visit our Contact page or fill out the form on our homepage. Our team will provide a free assessment within 24 hours.",
+        'maintenance': "Solar panels require minimal maintenance in Pakistan! We recommend quarterly cleaning due to dust, plus annual inspections. Our maintenance packages start at ₨15,000/year.",
+        'battery': "Battery backup systems store excess solar energy for use during load shedding. We offer lithium-ion and tubular battery options. Prices start at ₨280,000.",
+        'savings': "Most Pakistani homeowners save 50-90% on their electricity bills with solar. Use our Solar Calculator on the homepage to estimate your specific savings!",
+        'install': "Most residential installations in Pakistan take 1-3 days, but the full process from consultation to net metering is typically 4-8 weeks.",
+        'installation': "Most residential installations in Pakistan take 1-3 days, but the full process from consultation to net metering is typically 4-8 weeks.",
+        'warranty': "We offer a comprehensive 25-year performance warranty on all solar panels, plus workmanship warranties on installation.",
+        'financing': "We offer multiple financing options in Pakistan including bank solar loans and easy installment plans.",
+        'net metering': "Net metering in Pakistan allows you to sell excess solar energy back to the grid. NEPRA has made net metering mandatory for all DISCOs.",
+        'load shedding': "With our hybrid solar systems and battery backup, you can eliminate load shedding from your life!",
         'hello': "Assalamu Alaikum! Welcome to SolarMax Energy Pakistan. I'm your Solar Assistant. How can I help you today?",
         'hi': "Assalamu Alaikum! Welcome to SolarMax Energy Pakistan. I'm your Solar Assistant. How can I help you today?",
-        'salam': "Wa Alaikum Assalam! Welcome to SolarMax Energy Pakistan. How can I assist you with solar energy today?",
-        'help': "I can help you with information about solar costs in Pakistan, how solar works, getting a quote, maintenance, battery backup for load shedding, savings estimates, installation timelines, warranties, net metering, and financing options. What would you like to know?"
+        'salam': "Wa Alaikum Assalam! Welcome to SolarMax Energy Pakistan. How can I assist you today?",
+        'help': "I can help you with solar costs, how solar works, getting a quote, maintenance, battery backup, savings estimates, installation, warranties, net metering, and financing. What would you like to know?"
     };
     
     function getBotResponse(message) {
@@ -450,10 +476,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const defaults = [
-            "That's a great question! For more detailed information specific to Pakistan, I'd recommend speaking with one of our solar experts. You can reach us at +92 300 1234567 or fill out our contact form.",
-            "I'd be happy to help with that! Could you provide a bit more detail so I can give you the most accurate information for your situation in Pakistan?",
-            "Thanks for your interest in solar energy in Pakistan! Our team would love to discuss this with you in detail. Would you like to schedule a free consultation?",
-            "Solar energy has tremendous potential in Pakistan! For specific details about your situation, please use our Solar Calculator or contact our team directly."
+            "That's a great question! For more detailed information, I'd recommend speaking with one of our solar experts at +92 300 1234567.",
+            "I'd be happy to help with that! Could you provide a bit more detail so I can give you the most accurate information?",
+            "Thanks for your interest in solar energy! Our team would love to discuss this with you. Would you like to schedule a free consultation?",
+            "Solar energy has tremendous potential in Pakistan! For specific details, please use our Solar Calculator or contact our team."
         ];
         
         return defaults[Math.floor(Math.random() * defaults.length)];
@@ -469,9 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const timeStr = now.toLocaleTimeString('en-PK', { hour: '2-digit', minute: '2-digit' });
         
         messageDiv.innerHTML = `
-            <div class="message-content">
-                <p>${text}</p>
-            </div>
+            <div class="message-content"><p>${text}</p></div>
             <span class="message-time">${timeStr}</span>
         `;
         
@@ -510,26 +534,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (chatbotSend && chatbotInput) {
         chatbotSend.addEventListener('click', sendMessage);
-        
         chatbotInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+            if (e.key === 'Enter') sendMessage();
         });
     }
     
     if (chatbotSuggestions) {
         chatbotSuggestions.addEventListener('click', function(e) {
             if (e.target.classList.contains('suggestion-chip')) {
-                const text = e.target.textContent;
-                chatbotInput.value = text;
+                chatbotInput.value = e.target.textContent;
                 sendMessage();
             }
         });
     }
 
     // ============================================
-    // Contact Form Handling
+    // CONTACT FORM
     // ============================================
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
@@ -537,19 +557,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             contactForm.style.display = 'none';
             if (formSuccess) {
                 formSuccess.style.display = 'block';
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         });
     }
     
     const contactPreviewForm = document.getElementById('contactPreviewForm');
-    
     if (contactPreviewForm) {
         contactPreviewForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -559,42 +575,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // GSAP Animations
+    // GSAP ANIMATIONS
     // ============================================
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        
-        // Hero parallax
         if (document.querySelector('.hero')) {
             gsap.to('.hero-bg', {
-                yPercent: 20,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true
-                }
+                yPercent: 20, ease: 'none',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
             });
         }
         
-        // Section reveals
         gsap.utils.toArray('.section-header').forEach(header => {
             gsap.from(header, {
-                y: 30,
-                opacity: 0,
-                duration: 0.7,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: header,
-                    start: 'top 88%',
-                    toggleActions: 'play none none none'
-                }
+                y: 30, opacity: 0, duration: 0.7, ease: 'power2.out',
+                scrollTrigger: { trigger: header, start: 'top 88%', toggleActions: 'play none none none' }
             });
         });
     }
 
     // ============================================
-    // Smooth Scroll
+    // SMOOTH SCROLL
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -604,54 +604,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
     // ============================================
-    // WhatsApp Float Animation
+    // WHATSAPP FLOAT
     // ============================================
     const whatsappFloat = document.querySelector('.whatsapp-float');
-    
     if (whatsappFloat && typeof gsap !== 'undefined') {
         gsap.from(whatsappFloat, {
-            scale: 0,
-            opacity: 0,
-            duration: 0.5,
-            delay: 1.2,
-            ease: 'back.out(1.7)'
+            scale: 0, opacity: 0, duration: 0.5, delay: 1.2, ease: 'back.out(1.7)'
         });
     }
 
     // ============================================
-    // Page Load Animation
+    // PAGE LOAD
     // ============================================
     if (typeof gsap !== 'undefined') {
-        gsap.from('.navbar', {
-            y: -100,
-            opacity: 0,
-            duration: 0.7,
-            ease: 'power2.out'
-        });
+        gsap.from('.navbar', { y: -100, opacity: 0, duration: 0.7, ease: 'power2.out' });
         
         if (document.querySelector('.hero-content')) {
             gsap.from('.hero-content > *', {
-                y: 40,
-                opacity: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                delay: 0.25,
-                ease: 'power2.out'
+                y: 40, opacity: 0, duration: 0.7, stagger: 0.12, delay: 0.25, ease: 'power2.out'
             });
         }
     }
 
     // ============================================
-    // About Page Story Stats
+    // STORY STATS
     // ============================================
     const storyNumbers = document.querySelectorAll('.story-number[data-count]');
     
@@ -663,10 +645,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     if (typeof gsap !== 'undefined') {
                         gsap.to(num, {
-                            innerText: target,
-                            duration: 2,
-                            snap: { innerText: 1 },
-                            ease: 'power1.out',
+                            innerText: target, duration: 2, snap: { innerText: 1 }, ease: 'power1.out',
                             onUpdate: function() {
                                 if (this.targets && this.targets()[0]) {
                                     num.textContent = Math.floor(this.targets()[0].innerText).toLocaleString('en-PK');
